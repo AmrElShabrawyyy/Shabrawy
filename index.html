@@ -1,9 +1,45 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
-<title>Amr El Shabrawy White</title>
-<meta name="claude:viewport-fit-sides" content="cover">
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>عمرو الشبراوي | Amr El Shabrawy</title>
+<meta name="description" content="اطلب من عمرو الشبراوي أونلاين — فول، طعمية، كريب، شاورما ووجبات. توصيل للبيت أو استلام من الفرع، كاش أو إنستاباي. الخط الساخن 16574">
+<meta name="theme-color" content="#1a8a3c">
+<meta property="og:title" content="عمرو الشبراوي — اطلب أونلاين">
+<meta property="og:description" content="الطعم أصلي والأصل مصري. توصيل أو استلام من الفرع، كاش أو إنستاباي.">
+<meta property="og:image" content="img/hero.webp">
+<link rel="icon" href="img/logo.webp">
+<link rel="apple-touch-icon" href="img/logo.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lalezar&family=Readex+Pro:wght@300;400;500;600;700&display=swap">
+
+<!-- =====================================================================
+     FIREBASE SETTINGS — paste your project's config here (step 4 of the guide)
+     ===================================================================== -->
+<script>
+window.FIREBASE_CONFIG = {
+  apiKey: "PASTE_API_KEY_HERE",
+  authDomain: "PASTE_PROJECT_ID.firebaseapp.com",
+  projectId: "PASTE_PROJECT_ID",
+  storageBucket: "PASTE_PROJECT_ID.appspot.com",
+  messagingSenderId: "PASTE_SENDER_ID",
+  appId: "PASTE_APP_ID"
+};
+// The owner account you create in Firebase Authentication (step 3). Login on the site uses
+// username "Amrelshabrawy" + the password you set for this email in Firebase.
+window.OWNER_EMAIL = "owner@amrelshabrawy.site";
+</script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 <style>
+/* base reset (standalone hosting) */
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0}
+img{max-width:100%}
+[hidden]{display:none!important}
+
 /* Layout: Egyptian street-food stall — skewed ribbon labels and diamond strips from the printed menu, one long menu column with a floating cart bar; owner dashboard as a second view. */
 :root{
   --bg:#ffffff; --surface:#ffffff; --surface-2:#f3f7f1; --ink:#1c2a1f; --muted:#64705f; --line:#e6ebe2;
@@ -303,6 +339,9 @@ html[dir="ltr"] .hero-art .r1{transform:skewX(8deg) rotate(4deg)}
 .shake{animation:shake .4s}
 @keyframes shake{20%,60%{transform:translateX(-8px)}40%,80%{transform:translateX(8px)}}
 </style>
+</head>
+<body>
+
 
 <header class="top">
   <div class="wrap">
@@ -435,7 +474,7 @@ html[dir="ltr"] .hero-art .r1{transform:skewX(8deg) rotate(4deg)}
 <div class="toasts" id="toasts" aria-live="polite"></div>
 
 <script>
-const IMG="img/";
+const IMG="img/";const OWNER_EMAIL=window.OWNER_EMAIL||"owner@amrelshabrawy.site";
 /* item: [nameAr, price, variantsAr, nameEn, variantsEn] */
 const MENU=[
  {id:"crepes",ar:"الكريبات",en:"Crepes",img:"crepes",items:[["كريب بطاطس",80,0,"Fries Crepe"],["كريب استربس",150,0,"Strips Crepe"],["كريب شيش",135,0,"Shish Crepe"],["كريب فاهيتا",140,0,"Fajita Crepe"],["كريب شاورما فراخ",140,0,"Chicken Shawarma Crepe"],["كريب سوسيس",120,0,"Sausage Crepe"],["كريب بانيه",135,0,"Pané Crepe"],["كريب ميكسيكان",130,0,"Mexican Crepe"],["كريب بسطرمة",140,0,"Pastrami Crepe"],["كريب ميكس فراخ",170,0,"Mixed Chicken Crepe"],["كريب ميكس جبنة",110,0,"Mixed Cheese Crepe"]]},
@@ -484,18 +523,27 @@ en:{brand:"Amr El Shabrawy",brandSub:"عمرو الشبراوي",menu:"Menu",own
  customer:"Customer",address2:"Address",branch2:"Branch",note:"Note:",copy:"Copy",copied:"Copied",startPrep:"Start preparing",outForDel:"Out for delivery",delivered:"Delivered",cancelOrder:"Cancel order",tapConfirm:"Tap again to confirm",updated:"Updated",updatedMsg:"Status is now: {x}",notUpdated:"Not updated",tryAgain:"Try again in a few seconds.",saved:"Saved",savedInsta:"Customers will see your InstaPay details at checkout.",notSaved:"Not saved",noHere:"No orders here",tryFilter:"Try another filter.",noneYet:"No orders yet",noneYetSub:"When a customer orders from the menu, it shows up here instantly with an alert.",newOrder:"New order",items:"items",now:"just now",minAgo:"{x} min ago",hrAgo:"{x} h ago",noSound:"This browser won't play sound.",drinksPic:"Drinks",chooseType:"Choose a type",
  f_active:"Active",f_all:"All",st_new:"New",st_preparing:"Preparing",st_onway:"On the way",st_done:"Delivered",st_cancelled:"Cancelled",pay_cash:"Cash on delivery",pay_instapay:"InstaPay on delivery",orderType:"How do you want it?",t_delivery:"Home delivery",t_pickup:"Pickup from branch",t_deliverySub:"A driver brings it to your door",t_pickupSub:"Collect it from the branch",branchPickup:"Branch you'll pick up from",cashSubP:"Pay cash at the branch when you collect",instaSubP:"Transfer with InstaPay when you collect",instaToP:"Transfer to {x} when you collect, and show the cashier the confirmation.",instaGenericP:"You'll transfer with InstaPay at the branch; the cashier will give you the details.",st_ready:"Ready for pickup",st_picked:"Picked up",readyPickup:"Ready for pickup",pickedUp:"Picked up",pickupAt:"Pickup from branch",donePickup:"We'll show it here as soon as your order is ready to collect.",pay_cash_p:"Cash at pickup",pay_instapay_p:"InstaPay at pickup"}
 };
+
+Object.assign(T.ar,{setupMissing:"الموقع لسه مش متوصل بقاعدة البيانات. حط إعدادات Firebase في أول ملف index.html.",orderOffline:"الطلب أونلاين مش متاح دلوقتي. اطلب بالتليفون على 16574.",notifOn:"تفعيل التنبيهات",notifIsOn:"التنبيهات شغّالة",loggingIn:"بندخّلك…",netLogin:"مفيش اتصال بالإنترنت. جرّب تاني."});
+Object.assign(T.en,{setupMissing:"The site isn't connected to its database yet. Add the Firebase settings at the top of index.html.",orderOffline:"Online ordering isn't available right now. Order by phone on 16574.",notifOn:"Turn on alerts",notifIsOn:"Alerts on",loggingIn:"Signing in…",netLogin:"No internet connection. Try again."});
+
 const FLOW=["new","preparing","onway","done"];
+const OWNER_USER="amrelshabrawy";
 const stLabel=(st,type)=>type==="pickup"&&st==="onway"?t("st_ready"):type==="pickup"&&st==="done"?t("st_picked"):t("st_"+st);
 const payLabel=(pay,type)=>{const k="pay_"+(pay==="instapay"?"instapay":"cash");return type==="pickup"&&T[S.lang][k+"_p"]?t(k+"_p"):t(k)};
-const AUTH={u:"2a2f992a74bf21b98728281da3b5c5eaa0f8650780ae54bf4573a666c4d43e36",p:"6880b4041355f4a4d81eefaf6f98ea01f2a7e4bffbe9ecbf878c6383bfca095e"};
 
 const $=s=>document.querySelector(s);
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const store={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch{return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch{}},del(k){try{localStorage.removeItem(k)}catch{}}};
 const toLatin=s=>String(s).replace(/[٠-٩]/g,d=>"٠١٢٣٤٥٦٧٨٩".indexOf(d)).replace(/[۰-۹]/g,d=>"۰۱۲۳۴۵۶۷۸۹".indexOf(d));
 
+/* ---------- Firebase ---------- */
+let fs=null,auth=null;
+const configured=window.FIREBASE_CONFIG&&FIREBASE_CONFIG.apiKey&&!/PASTE/.test(FIREBASE_CONFIG.apiKey);
+if(configured&&window.firebase){try{firebase.initializeApp(FIREBASE_CONFIG);fs=firebase.firestore();auth=firebase.auth()}catch(e){console.error(e)}}
+
 /* ---------- state ---------- */
-const S={lang:store.get("shab_lang","ar"),cart:store.get("shab_cart",{}),variant:{},step:"cart",shop:{open:true,instapay:""},db:null,user:null,uid:null,canWrite:null,canEdit:false,authed:store.get("shab_auth",false),all:[],myOrders:{},filter:"active",seen:null,sound:false,unread:0,lastOrder:null,drawerMode:"cart",view:"menu",ordersSub:null};
+const S={lang:store.get("shab_lang","ar"),cart:store.get("shab_cart",{}),variant:{},step:"cart",shop:{open:true,instapay:""},authed:false,all:[],myIds:store.get("shab_my",[]),myOrders:{},mySubs:{},filter:"active",seen:null,alerts:false,unread:0,lastOrder:null,drawerMode:"cart",view:"menu",ordersSub:null};
 const t=(k,x)=>{let s=(T[S.lang]||T.ar)[k];if(s==null)s=T.ar[k]||k;return x!=null?s.replace("{x}",x):s};
 const fmt=n=>new Intl.NumberFormat(S.lang==="ar"?"ar-EG":"en-US").format(n);
 const egp=n=>S.lang==="ar"?fmt(n)+" ج.م":"EGP "+fmt(n);
@@ -506,24 +554,24 @@ function nameOf(it,vi,lang){const ar=lang==="ar";const base=ar?it[0]:it[3];const
 function itemTitle(it){const base=isAr()?it[0]:it[3],vars=isAr()?it[2]:it[4];return base||vars.join(" / ")}
 
 /* ---------- language ---------- */
+let baseTitle=document.title;
 function applyLang(){
   const html=document.documentElement;html.lang=S.lang;html.dir=isAr()?"rtl":"ltr";
   document.querySelectorAll("[data-t]").forEach(el=>{const v=t(el.dataset.t);if(el.dataset.html)el.innerHTML=v;else el.textContent=v});
   $("#langBtn").textContent=isAr()?"EN":"ع";$("#langBtn").setAttribute("aria-label",isAr()?"Switch to English":"التحويل للعربي");
   $("#q").placeholder=t("searchPh");$("#q").setAttribute("aria-label",t("searchPh"));
-  $("#catbar").setAttribute("aria-label",t("menu"));
   document.querySelector(".hero-art img").alt=t("brand");
-  $("#soundBtn").textContent=S.sound?t("soundIsOn"):t("soundOn");
+  $("#soundBtn").textContent=S.alerts?t("notifIsOn"):t("notifOn");
   $("#openLabel").textContent=S.shop.open?t("openOn"):t("openOff");
   $("#showPw").textContent=$("#lPass").type==="password"?t("show"):t("hide");
   baseTitle=isAr()?"عمرو الشبراوي":"Amr El Shabrawy";bumpUnread(S.unread);
-  renderMenu();renderControls();updateCartBar();
+  renderMenu();renderControls();updateCartBar();paintSetup();
   if(!$("#drawer").hidden)renderDrawer();
   if(S.view==="owner")renderOwner();
 }
 $("#langBtn").onclick=()=>{S.lang=isAr()?"en":"ar";store.set("shab_lang",S.lang);const y=scrollY;applyLang();scrollTo({top:y})};
 
-/* ---------- render menu ---------- */
+/* ---------- menu ---------- */
 function renderMenu(){
   $("#chips").innerHTML=MENU.map(c=>`<button class="chip" data-cat="${c.id}">${isAr()?c.ar:c.en}</button>`).join("");
   $("#menuRoot").innerHTML=MENU.map(c=>`
@@ -591,15 +639,14 @@ document.addEventListener("click",e=>{
   else if(d.v!=null&&d.k){S.variant[d.k]=+d.v;b.parentElement.querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",x===b));renderControls()}
   else if(d.cat){const el=$("#cat-"+d.cat);el&&el.scrollIntoView({behavior:"smooth"})}
   else if(d.f){S.filter=d.f;renderOwner()}
-  else if(d.adv){const [u,i,s]=d.adv.split("|");b.disabled=true;setStatus(u,i,s)}
+  else if(d.adv){const [i,s]=d.adv.split("|");b.disabled=true;setStatus(i,s)}
   else if(d.cancel){
-    if(d.armed){const [u,i]=d.cancel.split("|");b.disabled=true;setStatus(u,i,"cancelled")}
+    if(d.armed){b.disabled=true;setStatus(d.cancel,"cancelled")}
     else{d.armed="1";b.textContent=t("tapConfirm");setTimeout(()=>{if(b.isConnected){delete b.dataset.armed;b.textContent=t("cancelOrder")}},3500)}
   }
   else if(d.copy!=null){const v=d.copy;try{navigator.clipboard.writeText(v).then(()=>toast(t("copied"),v)).catch(()=>{})}catch{}}
 });
 
-/* search */
 function filterMenu(){
   const q=$("#q").value.trim().toLowerCase();let any=false;
   document.querySelectorAll(".cat").forEach(sec=>{
@@ -610,8 +657,6 @@ function filterMenu(){
   $("#noResults").hidden=any;
 }
 $("#q").addEventListener("input",filterMenu);
-
-/* scrollspy */
 const spy=new IntersectionObserver(ents=>{ents.forEach(en=>{if(en.isIntersecting){const id=en.target.id.slice(4);document.querySelectorAll(".chip").forEach(c=>{const on=c.dataset.cat===id;c.classList.toggle("on",on);if(on){const box=$("#chips");box.scrollTo({left:c.offsetLeft-box.clientWidth/2+c.offsetWidth/2,behavior:"smooth"})}})}})},{rootMargin:"-45% 0px -50% 0px"});
 
 /* ---------- drawer ---------- */
@@ -629,9 +674,8 @@ document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!$("#drawer").hidde
 
 const stepsBar=n=>`<div class="steps">${[1,2,3].map(i=>`<span class="${i<=n?"on":""}"></span>`).join("")}</div>`;
 function orderBlocked(){
+  if(!fs)return t("orderOffline");
   if(!S.shop.open)return t("blockClosed");
-  if(!S.db||!S.uid)return t("blockSign");
-  if(S.canWrite===false)return t("blockView");
   return null;
 }
 const PAYICON={bike:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="5.5" cy="17" r="3"/><circle cx="18.5" cy="17" r="3"/><path d="M8.5 17h5l3-6h-4l-2-4H8M15 6h3"/></svg>',bag:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14l-1 13H6L5 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>',cash:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M6 10v4M18 10v4"/></svg>',insta:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M10 18h4M9 9l2 2 4-4"/></svg>'};
@@ -644,7 +688,7 @@ function renderDrawer(){
     if(!lines.length){body.innerHTML=`<div class="o-empty"><b>${t("cartEmpty")}</b>${t("cartEmptySub")}</div>`;foot.innerHTML="";return}
     body.innerHTML=stepsBar(1)+lines.map(l=>`<div class="line"><div class="nm">${esc(l.n)}<small>${esc(l.cat)} · ${egp(l.p)}</small></div>
       <div class="stepper"><button data-dec="${l.ck}" aria-label="−">−</button><span class="num">${fmt(l.q)}</span><button data-inc="${l.ck}" aria-label="+">+</button></div></div>`).join("")
-      +`<label class="f" style="margin-top:14px"><span>${t("notes")}</span><textarea id="oNote" placeholder="${t("notesPh")}">${esc(store.get("shab_note",""))}</textarea></label>`;
+      +`<label class="f" style="margin-top:14px"><span>${t("notes")}</span><textarea id="oNote" maxlength="400" placeholder="${t("notesPh")}">${esc(store.get("shab_note",""))}</textarea></label>`;
     $("#oNote").oninput=e=>store.set("shab_note",e.target.value);
     foot.innerHTML=`<div class="sumrow"><span>${t("total")}</span><b class="num">${egp(cartTotal())}</b></div><button class="btn btn-green" id="toCheckout" style="width:100%;margin-top:10px">${t("toCheckout")}</button>`;
     $("#toCheckout").onclick=()=>{S.step="details";renderDrawer()};
@@ -653,7 +697,7 @@ function renderDrawer(){
     const p=store.get("shab_profile",{}),blocked=orderBlocked();
     body.innerHTML=stepsBar(2)+`
       <form id="coForm" novalidate>
-        <label class="f"><span>${t("name")}</span><input id="cName" autocomplete="name" value="${esc(p.name||"")}" required></label>
+        <label class="f"><span>${t("name")}</span><input id="cName" maxlength="80" autocomplete="name" value="${esc(p.name||"")}" required></label>
         <label class="f"><span>${t("phone")}</span><input id="cPhone" inputmode="tel" autocomplete="tel" dir="ltr" placeholder="01xxxxxxxxx" value="${esc(p.phone||"")}" required><div class="err" id="ePhone" hidden>${t("phoneErr")}</div></label>
         <span style="display:block;font-size:13px;font-weight:500;margin-bottom:6px">${t("orderType")}</span>
         <div class="pay otype">
@@ -661,21 +705,21 @@ function renderDrawer(){
           <label><input type="radio" name="otype" value="pickup" ${p.type==="pickup"?"checked":""}><div class="ic">${PAYICON.bag}</div><b>${t("t_pickup")}</b><small>${t("t_pickupSub")}</small></label>
         </div>
         <label class="f"><span id="branchLbl">${t("branch")}</span><select id="cBranch">${BRANCHES.map((b,i)=>`<option value="${i}" ${p.branch==i?"selected":""}>${isAr()?b[0]+" — "+b[1]:b[2]+" — "+b[3]}</option>`).join("")}</select></label>
-        <label class="f" id="addrWrap"><span>${t("address")}</span><textarea id="cAddr" autocomplete="street-address" placeholder="${t("addressPh")}" required>${esc(p.addr||"")}</textarea><div class="err" id="eAddr" hidden>${t("addrErr")}</div></label>
+        <label class="f" id="addrWrap"><span>${t("address")}</span><textarea id="cAddr" maxlength="400" autocomplete="street-address" placeholder="${t("addressPh")}" required>${esc(p.addr||"")}</textarea><div class="err" id="eAddr" hidden>${t("addrErr")}</div></label>
         <span style="display:block;font-size:13px;font-weight:500;margin-bottom:6px">${t("payMethod")}</span>
         <div class="pay">
-          <label class="cash"><input type="radio" name="pay" value="cash" ${p.pay!=="instapay"?"checked":""}><div class="ic">${PAYICON.cash}</div><b id="payCashB">${t("pay_cash")}</b><small id="payCashS">${t("cashSub")}</small></label>
-          <label class="insta"><input type="radio" name="pay" value="instapay" ${p.pay==="instapay"?"checked":""}><div class="ic">${PAYICON.insta}</div><b id="payInstaB">${t("pay_instapay")}</b><small id="payInstaS">${t("instaSub")}</small></label>
+          <label class="cash"><input type="radio" name="pay" value="cash" ${p.pay!=="instapay"?"checked":""}><div class="ic">${PAYICON.cash}</div><b id="payCashB"></b><small id="payCashS"></small></label>
+          <label class="insta"><input type="radio" name="pay" value="instapay" ${p.pay==="instapay"?"checked":""}><div class="ic">${PAYICON.insta}</div><b id="payInstaB"></b><small id="payInstaS"></small></label>
         </div>
         <div class="info" id="instaInfo" hidden></div>
         ${blocked?`<div class="closed-note" style="margin-top:12px">${esc(blocked)}</div>`:""}
       </form>`;
     const sync=()=>{
-      const pick=document.querySelector('input[name=otype]:checked').value==="pickup",P=pick?"P":"";
+      const pick=document.querySelector('input[name=otype]:checked').value==="pickup",P=pick?"P":"",ty=pick?"pickup":"delivery";
       $("#addrWrap").hidden=pick;$("#branchLbl").textContent=pick?t("branchPickup"):t("branch");
-      $("#payCashB").textContent=payLabel("cash",pick?"pickup":"delivery");$("#payInstaB").textContent=payLabel("instapay",pick?"pickup":"delivery");
+      $("#payCashB").textContent=payLabel("cash",ty);$("#payInstaB").textContent=payLabel("instapay",ty);
       $("#payCashS").textContent=t("cashSub"+P);$("#payInstaS").textContent=t("instaSub"+P);
-      const insta=document.querySelector('input[name=pay]:checked').value==="instapay";const box=$("#instaInfo");box.hidden=!insta;
+      const insta=document.querySelector('input[name=pay]:checked').value==="instapay",box=$("#instaInfo");box.hidden=!insta;
       box.innerHTML=S.shop.instapay?esc(t("instaTo"+P,"\u0001")).replace("\u0001",`<b dir="ltr">${esc(S.shop.instapay)}</b>`):esc(t("instaGeneric"+P))};
     document.querySelectorAll('input[name=pay],input[name=otype]').forEach(r=>r.onchange=sync);sync();
     foot.innerHTML=`<div class="sumrow"><span>${t("total")}</span><b class="num">${egp(cartTotal())}</b></div>
@@ -708,6 +752,15 @@ function renderMine(){
     <div style="font-size:13.5px;margin-top:4px">${(o.items||[]).map(i=>`${esc(lineLabel(i))} ×${fmt(+i.q)}`).join(isAr()?"، ":", ")}</div>${trackHTML(o.status,o.type)}</div>`).join("")
     :`<div class="o-empty"><b>${t("noOrders")}</b>${t("noOrdersSub")}</div>`;
 }
+function watchMine(id){
+  if(!fs||S.mySubs[id])return;
+  S.mySubs[id]=fs.collection("orders").doc(id).onSnapshot(s=>{
+    if(!s.exists)return;const o=s.data(),p=S.myOrders[id];S.myOrders[id]=o;
+    if(p&&p.status!==o.status&&S.view==="menu")toast(t("order")+" "+o.no,t("statusToast",stLabel(o.status,o.type)));
+    paintTrack();if(!$("#drawer").hidden&&S.drawerMode==="mine")renderMine();
+  },()=>{});
+  $("#myOrdersBtn").hidden=false;
+}
 
 async function placeOrder(){
   const name=$("#cName").value.trim(),phone=toLatin($("#cPhone").value).replace(/[\s-]/g,""),addr=$("#cAddr").value.trim(),branch=+$("#cBranch").value,pay=document.querySelector('input[name=pay]:checked').value,otype=document.querySelector('input[name=otype]:checked').value;
@@ -718,17 +771,18 @@ async function placeOrder(){
   if(!ok)return;
   store.set("shab_profile",{name,phone,addr,branch,pay,type:otype});
   const btn=$("#placeBtn");btn.disabled=true;btn.textContent=t("sending");
-  const id="o"+Date.now().toString(36)+Math.random().toString(36).slice(2,6),B=BRANCHES[branch];
-  const order={id,no:String(1000+Math.floor(Math.random()*9000)),createdAt:Date.now(),lang:S.lang,type:otype,name,phone,address:otype==="pickup"?"":addr,branch:B[0]+" — "+B[1],branchEn:B[2]+" — "+B[3],payment:pay,
-    items:cartLines().map(l=>({n:l.ar,ne:l.en,p:l.p,q:l.q})),total:cartTotal(),note:store.get("shab_note","").trim(),status:"new"};
+  const ref=fs.collection("orders").doc(),B=BRANCHES[branch];
+  const order={id:ref.id,no:String(1000+Math.floor(Math.random()*9000)),createdAt:Date.now(),lang:S.lang,type:otype,name,phone,address:otype==="pickup"?"":addr,branch:B[0]+" — "+B[1],branchEn:B[2]+" — "+B[3],payment:pay,
+    items:cartLines().map(l=>({n:l.ar,ne:l.en,p:l.p,q:l.q})),total:cartTotal(),note:store.get("shab_note","").trim().slice(0,400),status:"new"};
   try{
-    const ref=S.db.doc("orders/"+S.uid),snap=await ref.get();
-    if(snap.exists)await ref.update({orders:{[id]:order}});else await ref.set({orders:{[id]:order}});
-    S.lastOrder=order;S.myOrders[id]=order;S.cart={};store.set("shab_note","");updateCartBar();renderControls();
+    await ref.set(order);
+    S.myIds=[ref.id,...S.myIds.filter(x=>x!==ref.id)].slice(0,20);store.set("shab_my",S.myIds);
+    S.lastOrder=order;S.myOrders[ref.id]=order;watchMine(ref.id);
+    S.cart={};store.set("shab_note","");updateCartBar();renderControls();
     S.step="done";renderDrawer();
   }catch(err){
-    btn.disabled=false;btn.textContent=t("confirm");
-    toast(t("failTitle"),err&&err.code==="invalid_argument"?t("failPerm"):t("failNet"));
+    console.error(err);btn.disabled=false;btn.textContent=t("confirm");
+    toast(t("failTitle"),err&&err.code==="permission-denied"?t("blockClosed"):t("failNet"));
   }
 }
 
@@ -750,8 +804,8 @@ function renderOwner(){
   $("#orderList").innerHTML=list.length?list.map(ocardHTML).join(""):`<div class="o-empty"><b>${all.length?t("noHere"):t("noneYet")}</b>${all.length?t("tryFilter"):t("noneYetSub")}</div>`;
 }
 function ocardHTML(o){
-  const st=o.status,i=FLOW.indexOf(st),next=i>=0&&i<3?FLOW[i+1]:null;
-  const pk=o.type==="pickup";const nextLabel={preparing:t("startPrep"),onway:pk?t("readyPickup"):t("outForDel"),done:pk?t("pickedUp"):t("delivered")}[next];
+  const st=o.status,i=FLOW.indexOf(st),next=i>=0&&i<3?FLOW[i+1]:null,pk=o.type==="pickup";
+  const nextLabel={preparing:t("startPrep"),onway:pk?t("readyPickup"):t("outForDel"),done:pk?t("pickedUp"):t("delivered")}[next];
   const br=isAr()?o.branch:(o.branchEn||o.branch);
   return `<article class="ocard s-${esc(st)}">
     <div class="row1"><span class="ono num">#${esc(o.no)}</span><span class="badge st-${esc(st)}">${esc(stLabel(st,o.type))}</span><span class="typetag ${pk?"pickup":"delivery"}">${pk?t("t_pickup"):t("t_delivery")}</span><span class="paytag ${o.payment==="instapay"?"instapay":"cash"}">${esc(payLabel(o.payment,o.type))}</span><span class="ago" data-ago="${+o.createdAt}">${ago(o.createdAt)}</span></div>
@@ -764,34 +818,38 @@ function ocardHTML(o){
     <div class="olines">${(o.items||[]).map(it=>`<div><span>${esc(lineLabel(it))} <span class="num">×${fmt(+it.q)}</span></span><span class="num">${egp((+it.p)*(+it.q))}</span></div>`).join("")}
       <div class="tot"><span>${t("total")}</span><span class="num">${egp(+o.total||0)}</span></div></div>
     ${o.note?`<div class="info" style="margin-top:8px"><b>${t("note")}</b> ${esc(o.note)}</div>`:""}
-    ${next?`<div class="oacts"><button class="btn btn-green" data-adv="${esc(o._uid)}|${esc(o.id)}|${next}">${nextLabel}</button><button class="btn btn-bad" data-cancel="${esc(o._uid)}|${esc(o.id)}">${t("cancelOrder")}</button></div>`:""}
+    ${next?`<div class="oacts"><button class="btn btn-green" data-adv="${esc(o.id)}|${next}">${nextLabel}</button><button class="btn btn-bad" data-cancel="${esc(o.id)}">${t("cancelOrder")}</button></div>`:""}
   </article>`;
 }
-async function setStatus(uid,id,status){
-  try{await S.db.doc("orders/"+uid).update({orders:{[id]:{status,updatedAt:Date.now()}}});toast(t("updated"),t("updatedMsg",stLabel(status,(S.all.find(o=>o.id===id)||{}).type)))}
-  catch(e){toast(t("notUpdated"),t("tryAgain"))}
+async function setStatus(id,status){
+  try{await fs.collection("orders").doc(id).update({status,updatedAt:Date.now()});toast(t("updated"),t("updatedMsg",stLabel(status,(S.all.find(o=>o.id===id)||{}).type)))}
+  catch(e){console.error(e);toast(t("notUpdated"),t("tryAgain"))}
 }
 setInterval(()=>document.querySelectorAll("[data-ago]").forEach(el=>el.textContent=ago(+el.dataset.ago)),30000);
 
-/* alerts */
+/* alerts: sound + phone/computer notification */
 let actx=null;
-$("#soundBtn").onclick=()=>{
-  try{actx=actx||new (window.AudioContext||window.webkitAudioContext)();actx.resume();S.sound=true;$("#soundBtn").textContent=t("soundIsOn");$("#soundBtn").classList.add("on");chime()}catch{toast(t("soundOn"),t("noSound"))}
+$("#soundBtn").onclick=async()=>{
+  try{actx=actx||new (window.AudioContext||window.webkitAudioContext)();await actx.resume()}catch{}
+  try{if("Notification" in window&&Notification.permission==="default")await Notification.requestPermission()}catch{}
+  S.alerts=true;$("#soundBtn").textContent=t("notifIsOn");$("#soundBtn").classList.add("on");chime();
 };
 function chime(){
-  if(!S.sound||!actx)return;const c=actx.currentTime;
+  if(!S.alerts||!actx)return;const c=actx.currentTime;
   [[880,0],[1175,.16],[1568,.32]].forEach(([f,d])=>{const o=actx.createOscillator(),g=actx.createGain();o.type="triangle";o.frequency.value=f;g.gain.setValueAtTime(0,c+d);g.gain.linearRampToValueAtTime(.35,c+d+.02);g.gain.exponentialRampToValueAtTime(.001,c+d+.45);o.connect(g).connect(actx.destination);o.start(c+d);o.stop(c+d+.5)});
 }
 function toast(title,msg,cls){
   const el=document.createElement("div");el.className="toast "+(cls||"");el.innerHTML=`<b>${esc(title)}</b>${esc(msg)}`;
   $("#toasts").appendChild(el);setTimeout(()=>{el.style.transition="opacity .4s";el.style.opacity="0";setTimeout(()=>el.remove(),400)},cls==="new"?9000:3500);
 }
-let baseTitle=document.title;
 function bumpUnread(n){S.unread=n;$("#ownerDot").hidden=!n;$("#ownerDot").textContent=fmt(n);document.title=n?`(${n}) ${t("newOrder")} · ${baseTitle}`:baseTitle}
 function notifyNew(o){
-  toast(t("newOrder")+" #"+o.no,`${o.name} · ${fmt((o.items||[]).length)} ${t("items")} · ${egp(+o.total||0)} · ${o.type==="pickup"?t("t_pickup"):t("t_delivery")} · ${payLabel(o.payment,o.type)}`,"new");
-  chime();if(S.view!=="owner")bumpUnread(S.unread+1);
+  const msg=`${o.name} · ${fmt((o.items||[]).length)} ${t("items")} · ${egp(+o.total||0)} · ${o.type==="pickup"?t("t_pickup"):t("t_delivery")} · ${payLabel(o.payment,o.type)}`;
+  toast(t("newOrder")+" #"+o.no,msg,"new");chime();
+  try{if(S.alerts&&"Notification" in window&&Notification.permission==="granted"&&document.hidden)new Notification(t("newOrder")+" #"+o.no,{body:msg,icon:"img/logo.webp",tag:o.id})}catch{}
+  if(S.view!=="owner"||document.hidden)bumpUnread(S.unread+1);
 }
+document.addEventListener("visibilitychange",()=>{if(!document.hidden&&S.view==="owner")bumpUnread(0)});
 
 /* ---------- views + login ---------- */
 function showView(v){
@@ -800,82 +858,63 @@ function showView(v){
   $("#customer").hidden=v!=="menu";$("#login").hidden=v!=="login";$("#owner").hidden=v!=="owner";
   $("#viewSwitch").hidden=!S.authed;
   $("#vMenu").setAttribute("aria-pressed",v!=="owner");$("#vOwner").setAttribute("aria-pressed",v==="owner");
-  if(v==="owner"){bumpUnread(0);startOrders();renderOwner();paintAccess()}
+  if(v==="owner"){bumpUnread(0);startOrders();renderOwner()}
   if(v==="login"){$("#lErr").hidden=true;setTimeout(()=>$("#lUser").focus(),50)}
-  updateCartBar();scrollTo({top:0});
-  try{history.replaceState(null,"",v==="menu"?"#menu":"#owner")}catch{}
+  paintSetup();updateCartBar();scrollTo({top:0});
+  try{history.replaceState(null,"",v==="menu"?location.pathname:"#owner")}catch{}
 }
 $("#vMenu").onclick=()=>showView("menu");
 $("#vOwner").onclick=()=>showView("owner");
 $("#ownerLink").onclick=()=>showView("owner");
 $("#lBack").onclick=()=>showView("menu");
 $("#showPw").onclick=()=>{const p=$("#lPass");p.type=p.type==="password"?"text":"password";$("#showPw").textContent=p.type==="password"?t("show"):t("hide")};
-async function sha(s){const b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(s));return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,"0")).join("")}
 $("#loginForm").addEventListener("submit",async e=>{
   e.preventDefault();
-  const err=$("#lErr"),card=$("#loginForm");
-  let good=false;
-  try{good=(await sha($("#lUser").value.trim()))===AUTH.u&&(await sha($("#lPass").value))===AUTH.p}catch{}
-  if(!good){err.textContent=t("badLogin");err.hidden=false;card.classList.remove("shake");void card.offsetWidth;card.classList.add("shake");return}
-  S.authed=true;store.set("shab_auth",true);$("#lPass").value="";showView("owner");
+  const err=$("#lErr"),card=$("#loginForm"),btn=card.querySelector('[type=submit]');
+  const fail=msg=>{err.textContent=msg;err.hidden=false;card.classList.remove("shake");void card.offsetWidth;card.classList.add("shake")};
+  if(!auth){fail(t("setupMissing"));return}
+  if($("#lUser").value.trim().toLowerCase()!==OWNER_USER){fail(t("badLogin"));return}
+  btn.disabled=true;btn.textContent=t("loggingIn");
+  try{await auth.signInWithEmailAndPassword(OWNER_EMAIL,$("#lPass").value);$("#lPass").value=""}
+  catch(e2){fail(e2&&e2.code==="auth/network-request-failed"?t("netLogin"):t("badLogin"))}
+  btn.disabled=false;btn.textContent=t("signIn");
 });
-$("#logoutBtn").onclick=()=>{S.authed=false;store.del("shab_auth");if(S.ordersSub){S.ordersSub();S.ordersSub=null;S.seen=null}showView("menu")};
+$("#logoutBtn").onclick=async()=>{try{await auth.signOut()}catch{}};
 
 /* owner settings */
-$("#openToggle").onchange=async e=>{const open=e.target.checked;$("#openLabel").textContent=open?t("openOn"):t("openOff");try{await S.db.doc("shop/settings").set({...S.shop,open})}catch{toast(t("notSaved"),t("tryAgain"))}};
-$("#saveInsta").onclick=async()=>{const v=$("#instaInput").value.trim();try{await S.db.doc("shop/settings").set({...S.shop,instapay:v});toast(t("saved"),t("savedInsta"))}catch{toast(t("notSaved"),t("tryAgain"))}};
+$("#openToggle").onchange=async e=>{const open=e.target.checked;$("#openLabel").textContent=open?t("openOn"):t("openOff");try{await fs.doc("shop/settings").set({open},{merge:true})}catch{toast(t("notSaved"),t("tryAgain"))}};
+$("#saveInsta").onclick=async()=>{const v=$("#instaInput").value.trim().slice(0,80);try{await fs.doc("shop/settings").set({instapay:v},{merge:true});toast(t("saved"),t("savedInsta"))}catch{toast(t("notSaved"),t("tryAgain"))}};
 
 function startOrders(){
-  if(S.ordersSub||!S.db||!S.authed)return;
-  S.ordersSub=S.db.collection("orders").onSnapshot(snap=>{
-    const all=[];snap.docs.forEach(d=>{const os=(d.data()||{}).orders||{};Object.values(os).forEach(o=>{if(o&&o.id)all.push({...o,_uid:d.id})})});
-    all.sort((a,b)=>b.createdAt-a.createdAt);
+  if(S.ordersSub||!fs||!S.authed)return;
+  S.ordersSub=fs.collection("orders").orderBy("createdAt","desc").limit(300).onSnapshot(snap=>{
+    const all=snap.docs.map(d=>({...d.data(),id:d.id}));
     if(S.seen===null)S.seen=new Set(all.map(o=>o.id));
     else all.forEach(o=>{if(!S.seen.has(o.id)){S.seen.add(o.id);if(o.status==="new")notifyNew(o)}});
     S.all=all;if(S.view==="owner")renderOwner();
     $("#liveState").innerHTML=`<i></i><span>${t("live")}</span>`;
-  },()=>{$("#liveState").textContent=t("offline")});
+  },e=>{console.error(e);$("#liveState").textContent=t("offline")});
 }
+function stopOrders(){if(S.ordersSub){S.ordersSub();S.ordersSub=null}S.seen=null;S.all=[]}
+function paintSetup(){const el=$("#accessNote");el.textContent=t("setupMissing");el.hidden=!!fs||S.view!=="owner"&&S.view!=="login"}
 
-function paintAccess(){
-  const el=$("#accessNote");let ok=true;
-  if(S.view==="owner"&&booted&&(!S.db||!S.canEdit)){ok=false;el.textContent=t("noAccessHere")}
-  el.hidden=ok;
-}
-let booted=false;
 /* ---------- boot ---------- */
 applyLang();
-let readyResolve;const ready=new Promise(r=>readyResolve=r);setTimeout(()=>readyResolve(),11000);
-(async()=>{
-  if(!window.claude||!window.claude.use){readyResolve();booted=true;paintAccess();return}
-  const [db,user]=await Promise.all([claude.use("db").catch(()=>null),claude.use("user").catch(()=>null)]);
-  S.db=db;S.user=user;
-  if(user){
-    S.canEdit=!!(await Promise.resolve(user.canEdit()).catch(()=>false));
-    S.uid=await Promise.resolve(user.id()).catch(()=>null);
-    S.canWrite=await Promise.resolve(user.can("data.write")).catch(()=>null);
-  }
-  readyResolve();booted=true;
-  if(S.authed){$("#viewSwitch").hidden=false;startOrders()}
-  paintAccess();
-  if(location.hash==="#owner")showView("owner");
-  if(!db)return;
-  db.doc("shop/settings").onSnapshot(s=>{
+if(fs){
+  fs.doc("shop/settings").onSnapshot(s=>{
     const d=s.exists?s.data():{};S.shop={open:d.open!==false,instapay:d.instapay||""};
     $("#closedNote").hidden=S.shop.open;$("#openToggle").checked=S.shop.open;$("#openLabel").textContent=S.shop.open?t("openOn"):t("openOff");
     if(document.activeElement!==$("#instaInput"))$("#instaInput").value=S.shop.instapay;
     if(!$("#drawer").hidden&&S.step==="details")renderDrawer();
   },()=>{});
-  if(S.uid){
-    $("#myOrdersBtn").hidden=false;
-    db.doc("orders/"+S.uid).onSnapshot(s=>{
-      const prev=S.myOrders;S.myOrders=(s.exists&&s.data().orders)||{};
-      Object.values(S.myOrders).forEach(o=>{const p=prev[o.id];if(p&&p.status!==o.status&&S.view==="menu")toast(t("order")+" "+o.no,t("statusToast",stLabel(o.status,o.type)))});
-      paintTrack();if(!$("#drawer").hidden&&S.drawerMode==="mine")renderMine();
-    },()=>{});
-  }
-})();
-if(location.hash==="#owner"&&!window.claude)showView("owner");
+  S.myIds.forEach(watchMine);
+  auth.onAuthStateChanged(u=>{
+    const was=S.authed;S.authed=!!(u&&u.email&&u.email.toLowerCase()===OWNER_EMAIL.toLowerCase());
+    if(S.authed){startOrders();if(S.view!=="menu"||location.hash==="#owner")showView("owner");else $("#viewSwitch").hidden=false}
+    else{stopOrders();if(was||S.view==="owner")showView("menu");$("#viewSwitch").hidden=true}
+  });
+}
+if(location.hash==="#owner")showView("owner");
 </script>
-
-</body></html>
+</body>
+</html>
