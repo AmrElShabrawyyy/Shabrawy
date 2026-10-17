@@ -397,6 +397,7 @@ html[dir="ltr"] .hero-art .r1{transform:skewX(8deg) rotate(4deg)}
     <button class="pill" id="soundBtn" data-t="soundOn"></button>
     <button class="pill" id="logoutBtn" data-t="logout"></button>
   </div>
+  <div class="closed-note" id="accessNote" hidden style="display:block;margin:0 0 14px"></div>
   <div class="stats">
     <div class="stat hot"><small data-t="sNew"></small><b class="num" id="sNew">0</b></div>
     <div class="stat"><small data-t="sActive"></small><b class="num" id="sActive">0</b></div>
@@ -469,14 +470,14 @@ const BRANCHES=[
 ];
 const T={
 ar:{brand:"عمرو الشبراوي",brandSub:"Amr El Shabrawy",menu:"المنيو",ownerTab:"لوحة المالك",myOrders:"طلباتي",eyebrow:"Amr El Shabrawy · أكل شارع مصري",h1a:"عمرو",h1b:"الشبراوي",tag:"الطعم أصلي والأصل مصري",orderNow:"اطلب دلوقتي",hotlineSub:"توصيل للبيت<br>الخط الساخن",closed:"المطعم لا يستقبل طلبات أونلاين الآن. اتصل على 16574",rib1:"توصيل أو استلام من الفرع",rib2:"كاش أو إنستاباي",searchPh:"دوّر على أكلة…",noResults:"مفيش أكلة بالاسم ده. جرّب كلمة تانية.",priceNote:"الأسعار بالجنيه المصري، وخاضعة للتغيير تماشيًا مع تغير تكلفة المواد الخام.",branches:"فروعنا",viewCart:"عرض السلة",cur:"ج.م",ownerLogin:"دخول المالك",
- loginTitle:"دخول المالك",loginSub:"لوحة الطلبات للمطعم بس. اكتب اسم المستخدم وكلمة السر.",username:"اسم المستخدم",password:"كلمة السر",show:"إظهار",hide:"إخفاء",back:"رجوع",signIn:"دخول",badLogin:"اسم المستخدم أو كلمة السر غلط.",needAccount:"البيانات صح، بس اللوحة بتفتح من حساب المطعم بس على Claude. افتح الصفحة من حساب المالك.",
+ loginTitle:"دخول المالك",loginSub:"لوحة الطلبات للمطعم بس. اكتب اسم المستخدم وكلمة السر.",username:"اسم المستخدم",password:"كلمة السر",show:"إظهار",hide:"إخفاء",back:"رجوع",signIn:"دخول",badLogin:"اسم المستخدم أو كلمة السر غلط.",noAccessHere:"الطلبات مش ظاهرة على الجهاز ده لأن الصفحة مفتوحة من غير حساب المطعم على Claude. افتح اللينك من claude.ai وانت مسجل دخول بحساب المطعم، أو اطلب من المالك يديك صلاحية Editor.",needAccount:"البيانات صح، بس اللوحة بتفتح من حساب المطعم بس على Claude. افتح الصفحة من حساب المالك.",
  dashTitle:"لوحة الطلبات",live:"متصل — الطلبات بتظهر فورًا",offline:"انقطع الاتصال. حدّث الصفحة.",soundOn:"تفعيل صوت التنبيه",soundIsOn:"الصوت شغّال",logout:"خروج",sNew:"طلبات جديدة",sActive:"قيد التنفيذ",sToday:"طلبات النهارده",sRevenue:"مبيعات النهارده",acceptTitle:"استقبال الطلبات",openOn:"المطعم مفتوح ويستقبل طلبات",openOff:"الطلبات أونلاين متوقفة",instaTitle:"بيانات إنستاباي",instaLabel:"الرقم أو اسم المستخدم اللي العميل يحوّل عليه",save:"حفظ",keepOpen:"خلي الصفحة دي مفتوحة على جهاز الكاشير. أي طلب جديد هيظهر هنا فورًا مع تنبيه وصوت.",
  cart:"السلة",cartEmpty:"السلة فاضية",cartEmptySub:"اختار أكلتك من المنيو واضغط +",notes:"ملاحظات على الطلب (اختياري)",notesPh:"مثال: من غير بصل، صوص زيادة",total:"الإجمالي",toCheckout:"متابعة للدفع",details:"بيانات التوصيل",name:"الاسم",phone:"رقم الموبايل",phoneErr:"اكتب رقم موبايل مصري صحيح من 11 رقم يبدأ بـ 01",branch:"الفرع الأقرب ليك",address:"العنوان بالتفصيل",addressPh:"المنطقة، الشارع، رقم العمارة، الدور، الشقة، علامة مميزة",addrErr:"اكتب العنوان علشان المندوب يوصلك",payMethod:"طريقة الدفع",cashSub:"ادفع للمندوب لما الأكل يوصلك",instaSub:"حوّل بإنستاباي لما الأكل يوصلك",instaTo:"حوّل على: {x} بعد ما الطلب يوصلك، ووري المندوب رسالة التحويل.",instaGeneric:"هتحوّل بإنستاباي لما الطلب يوصلك، والمندوب هيديك بيانات التحويل.",confirm:"أكّد الطلب",sending:"بنبعت الطلب…",done:"تم الطلب",doneH:"طلبك وصل للمطعم",orderNo:"رقم الطلب",trackAll:"تابع كل طلباتي",cancelledMsg:"الطلب اتلغى",noOrders:"لسه مطلبتش",noOrdersSub:"أول ما تطلب، هتتابع حالة الطلب من هنا.",order:"طلب",
  blockClosed:"المطعم لا يستقبل طلبات أونلاين الآن. اتصل على 16574.",blockSign:"الطلب أونلاين محتاج تسجيل دخول. اطلب بالتليفون على 16574.",blockView:"حسابك يقدر يتصفح المنيو بس. اطلب بالتليفون على 16574.",failTitle:"ما اتبعتش",failPerm:"حسابك مش مسموح له يبعت طلبات. اطلب بالتليفون على 16574.",failNet:"الطلب ما اتبعتش بسبب مشكلة في الاتصال. جرّب تاني بعد ثواني.",statusToast:"الحالة: {x}",
  customer:"العميل",address2:"العنوان",branch2:"الفرع",note:"ملاحظة:",copy:"نسخ",copied:"اتنسخ",startPrep:"ابدأ التحضير",outForDel:"خرج للتوصيل",delivered:"تم التوصيل",cancelOrder:"إلغاء الطلب",tapConfirm:"اضغط تاني للتأكيد",updated:"اتحدّث",updatedMsg:"الحالة بقت: {x}",notUpdated:"ما اتحدّثش",tryAgain:"جرّب تاني بعد ثواني.",saved:"اتحفظ",savedInsta:"بيانات إنستاباي هتظهر للعميل عند الدفع.",notSaved:"ما اتحفظش",noHere:"مفيش طلبات هنا",tryFilter:"جرّب فلتر تاني.",noneYet:"لسه مفيش طلبات",noneYetSub:"أول ما عميل يطلب من المنيو، الطلب هيظهر هنا فورًا مع تنبيه.",newOrder:"طلب جديد",items:"صنف",now:"دلوقتي",minAgo:"من {x} دقيقة",hrAgo:"من {x} ساعة",noSound:"المتصفح ده مش بيسمح بتشغيل الصوت.",drinksPic:"اشرب",chooseType:"اختار النوع",
  f_active:"الشغالة",f_all:"الكل",st_new:"جديد",st_preparing:"قيد التحضير",st_onway:"في الطريق",st_done:"تم التوصيل",st_cancelled:"ملغي",pay_cash:"كاش عند الاستلام",pay_instapay:"إنستاباي عند الاستلام",orderType:"طريقة الاستلام",t_delivery:"توصيل للبيت",t_pickup:"استلام من الفرع",t_deliverySub:"المندوب يوصلك لحد البيت",t_pickupSub:"تعدّي تاخده من الفرع",branchPickup:"الفرع اللي هتستلم منه",cashSubP:"ادفع كاش في الفرع وانت بتستلم",instaSubP:"حوّل بإنستاباي وانت بتستلم من الفرع",instaToP:"حوّل على: {x} عند الاستلام، ووري الكاشير رسالة التحويل.",instaGenericP:"هتحوّل بإنستاباي وانت بتستلم من الفرع، والكاشير هيديك بيانات التحويل.",st_ready:"جاهز للاستلام",st_picked:"تم الاستلام",readyPickup:"جاهز للاستلام",pickedUp:"تم الاستلام",pickupAt:"استلام من الفرع",donePickup:"هنبلغك هنا أول ما الطلب يجهز للاستلام."},
 en:{brand:"Amr El Shabrawy",brandSub:"عمرو الشبراوي",menu:"Menu",ownerTab:"Dashboard",myOrders:"My orders",eyebrow:"Egyptian street food · عمرو الشبراوي",h1a:"Amr",h1b:"El Shabrawy",tag:"Original taste, truly Egyptian",orderNow:"Order now",hotlineSub:"Home delivery<br>Hotline",closed:"We're not taking online orders right now. Call 16574.",rib1:"Delivery or pickup",rib2:"Cash or InstaPay",searchPh:"Search the menu…",noResults:"Nothing matches that name. Try another word.",priceNote:"Prices are in Egyptian pounds and may change with the cost of raw ingredients.",branches:"Our branches",viewCart:"View cart",cur:"EGP",ownerLogin:"Owner login",
- loginTitle:"Owner login",loginSub:"The order dashboard is for the restaurant only. Enter your username and password.",username:"Username",password:"Password",show:"Show",hide:"Hide",back:"Back",signIn:"Sign in",badLogin:"Wrong username or password.",needAccount:"Those details are right, but the dashboard only opens on the restaurant's Claude account. Open this page from the owner's account.",
+ loginTitle:"Owner login",loginSub:"The order dashboard is for the restaurant only. Enter your username and password.",username:"Username",password:"Password",show:"Show",hide:"Hide",back:"Back",signIn:"Sign in",badLogin:"Wrong username or password.",noAccessHere:"Orders can't load on this device because the page isn't open on the restaurant's Claude account. Open the link on claude.ai signed in to that account, or ask the owner for Editor access.",needAccount:"Those details are right, but the dashboard only opens on the restaurant's Claude account. Open this page from the owner's account.",
  dashTitle:"Orders dashboard",live:"Live — new orders appear instantly",offline:"Connection lost. Refresh the page.",soundOn:"Turn on alert sound",soundIsOn:"Sound on",logout:"Log out",sNew:"New orders",sActive:"In progress",sToday:"Orders today",sRevenue:"Sales today",acceptTitle:"Online ordering",openOn:"Open and taking orders",openOff:"Online ordering paused",instaTitle:"InstaPay details",instaLabel:"Number or username customers transfer to",save:"Save",keepOpen:"Keep this page open on the cashier's device. Every new order appears here instantly with an alert and a sound.",
  cart:"Your cart",cartEmpty:"Your cart is empty",cartEmptySub:"Pick something from the menu and tap +",notes:"Order notes (optional)",notesPh:"e.g. no onions, extra sauce",total:"Total",toCheckout:"Continue to payment",details:"Delivery details",name:"Name",phone:"Mobile number",phoneErr:"Enter a valid 11-digit Egyptian mobile number starting with 01",branch:"Nearest branch",address:"Full address",addressPh:"Area, street, building, floor, apartment, landmark",addrErr:"Add your address so the driver can find you",payMethod:"Payment method",cashSub:"Pay the driver when your food arrives",instaSub:"Transfer with InstaPay when your food arrives",instaTo:"Transfer to {x} once your order arrives, and show the driver the confirmation.",instaGeneric:"You'll transfer with InstaPay when your order arrives; the driver will give you the details.",confirm:"Place order",sending:"Sending your order…",done:"Order placed",doneH:"Your order reached the restaurant",orderNo:"Order number",trackAll:"Track all my orders",cancelledMsg:"Order cancelled",noOrders:"No orders yet",noOrdersSub:"Once you order, you can follow its status here.",order:"Order",
  blockClosed:"We're not taking online orders right now. Call 16574.",blockSign:"Online ordering needs you to sign in. Order by phone on 16574.",blockView:"Your account can only browse the menu. Order by phone on 16574.",failTitle:"Not sent",failPerm:"Your account can't place orders. Order by phone on 16574.",failNet:"Your order didn't go through because of a connection problem. Try again in a few seconds.",statusToast:"Status: {x}",
@@ -794,12 +795,12 @@ function notifyNew(o){
 
 /* ---------- views + login ---------- */
 function showView(v){
-  if(v==="owner"&&!(S.authed&&S.canEdit))v="login";
+  if(v==="owner"&&!S.authed)v="login";
   S.view=v;
   $("#customer").hidden=v!=="menu";$("#login").hidden=v!=="login";$("#owner").hidden=v!=="owner";
-  $("#viewSwitch").hidden=!(S.authed&&S.canEdit);
+  $("#viewSwitch").hidden=!S.authed;
   $("#vMenu").setAttribute("aria-pressed",v!=="owner");$("#vOwner").setAttribute("aria-pressed",v==="owner");
-  if(v==="owner"){bumpUnread(0);startOrders();renderOwner()}
+  if(v==="owner"){bumpUnread(0);startOrders();renderOwner();paintAccess()}
   if(v==="login"){$("#lErr").hidden=true;setTimeout(()=>$("#lUser").focus(),50)}
   updateCartBar();scrollTo({top:0});
   try{history.replaceState(null,"",v==="menu"?"#menu":"#owner")}catch{}
@@ -816,8 +817,6 @@ $("#loginForm").addEventListener("submit",async e=>{
   let good=false;
   try{good=(await sha($("#lUser").value.trim()))===AUTH.u&&(await sha($("#lPass").value))===AUTH.p}catch{}
   if(!good){err.textContent=t("badLogin");err.hidden=false;card.classList.remove("shake");void card.offsetWidth;card.classList.add("shake");return}
-  await ready;
-  if(!S.canEdit){err.textContent=t("needAccount");err.hidden=false;return}
   S.authed=true;store.set("shab_auth",true);$("#lPass").value="";showView("owner");
 });
 $("#logoutBtn").onclick=()=>{S.authed=false;store.del("shab_auth");if(S.ordersSub){S.ordersSub();S.ordersSub=null;S.seen=null}showView("menu")};
@@ -827,7 +826,7 @@ $("#openToggle").onchange=async e=>{const open=e.target.checked;$("#openLabel").
 $("#saveInsta").onclick=async()=>{const v=$("#instaInput").value.trim();try{await S.db.doc("shop/settings").set({...S.shop,instapay:v});toast(t("saved"),t("savedInsta"))}catch{toast(t("notSaved"),t("tryAgain"))}};
 
 function startOrders(){
-  if(S.ordersSub||!S.db||!S.canEdit||!S.authed)return;
+  if(S.ordersSub||!S.db||!S.authed)return;
   S.ordersSub=S.db.collection("orders").onSnapshot(snap=>{
     const all=[];snap.docs.forEach(d=>{const os=(d.data()||{}).orders||{};Object.values(os).forEach(o=>{if(o&&o.id)all.push({...o,_uid:d.id})})});
     all.sort((a,b)=>b.createdAt-a.createdAt);
@@ -838,11 +837,17 @@ function startOrders(){
   },()=>{$("#liveState").textContent=t("offline")});
 }
 
+function paintAccess(){
+  const el=$("#accessNote");let ok=true;
+  if(S.view==="owner"&&booted&&(!S.db||!S.canEdit)){ok=false;el.textContent=t("noAccessHere")}
+  el.hidden=ok;
+}
+let booted=false;
 /* ---------- boot ---------- */
 applyLang();
 let readyResolve;const ready=new Promise(r=>readyResolve=r);setTimeout(()=>readyResolve(),11000);
 (async()=>{
-  if(!window.claude||!window.claude.use){readyResolve();return}
+  if(!window.claude||!window.claude.use){readyResolve();booted=true;paintAccess();return}
   const [db,user]=await Promise.all([claude.use("db").catch(()=>null),claude.use("user").catch(()=>null)]);
   S.db=db;S.user=user;
   if(user){
@@ -850,9 +855,9 @@ let readyResolve;const ready=new Promise(r=>readyResolve=r);setTimeout(()=>ready
     S.uid=await Promise.resolve(user.id()).catch(()=>null);
     S.canWrite=await Promise.resolve(user.can("data.write")).catch(()=>null);
   }
-  readyResolve();
-  if(!S.canEdit&&S.authed){S.authed=false;store.del("shab_auth")}
-  if(S.authed&&S.canEdit){$("#viewSwitch").hidden=false;startOrders()}
+  readyResolve();booted=true;
+  if(S.authed){$("#viewSwitch").hidden=false;startOrders()}
+  paintAccess();
   if(location.hash==="#owner")showView("owner");
   if(!db)return;
   db.doc("shop/settings").onSnapshot(s=>{
